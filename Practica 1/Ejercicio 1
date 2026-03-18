@@ -1,0 +1,39 @@
+{Realizar un algoritmo que cree un archivo binario de números enteros no ordenados y permita
+incorporar datos al archivo. Los números son ingresados desde el teclado. La carga finaliza
+cuando se ingresa el número 30000, que no debe incorporarse al archivo. El nombre del archivo
+debe ser proporcionado por el usuario desde el teclado.
+}
+
+program crearArchivo;
+
+type
+  archivo = file of integer;
+
+var
+  arch: archivo;
+  num: integer;
+  nombre: string;
+
+begin
+  writeln('Ingrese el nombre del archivo (sin .dat): ');
+  readln(nombre);
+
+  nombre := nombre + '.dat'; 
+
+  assign(arch, nombre);
+  rewrite(arch);
+
+  writeln('Ingrese numeros (30000 para terminar): ');
+  readln(num);
+
+  while (num <> 30000) do
+  begin
+    write(arch, num);
+    readln(num);
+  end;
+
+  close(arch);
+
+  writeln('Archivo creado correctamente.');
+  readln;
+end.
