@@ -1,0 +1,35 @@
+program ej2_p1;
+type
+	archivo = file of integer;
+
+var
+	arch:archivo;
+	menor_15k:integer;
+	totalNumeros:integer;
+	total:integer;
+	num:integer;
+	promedio:real;
+	nombre:string;
+begin
+	menor_15k:=0;
+	totalNumeros:=0;
+	total:=0;
+	writeln('Ingresar el nombre del archivo a procesar');
+	readln(nombre);
+	
+	assign(arch,nombre);
+	reset (arch);
+	while (not (EOF(arch))) do
+	begin
+		read(arch,num);
+		if (num<15000) then
+			menor_15k:=menor_15k + 1;
+		totalNumeros:=totalNumeros + num;
+		total:=total+1;
+		writeln(num);
+	end;
+	promedio:=(totalNumeros/total);
+	writeln('---------------------');
+	writeln('cantidad: ',menor_15k);
+	writeln('Promedio: ',promedio:0:2);
+end.
